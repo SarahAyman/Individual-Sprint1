@@ -1,0 +1,78 @@
+<nb-card>
+  <nb-card-header>Sarah's Store</nb-card-header>
+  <!-- <nb-card-header>
+      <div id="search-component">
+        <label>Product:
+          <input #searchBox id="search-box"/>
+        </label>
+        <button class="btn btn-hero-success main-btn" (click)="search(searchBox.value); searchBox.value=''">
+            Search
+        </button>
+      </div>
+  </nb-card-header> -->
+  <nb-card-header>
+    <button class="btn btn-hero-success main-btn" (click)="show()">
+      Add Product
+    </button>
+  </nb-card-header>
+  <nb-card-header *ngIf="flag1">
+      <div>
+          <label>Name:
+              <!-- <input [(ngModel)]="input.name" name="name" #name="ngModel" required> -->
+              <input #productName />
+          </label>
+          <label>Price:
+              <!-- <input [(ngModel)]="input.price" name="price" #price="ngModel" required> -->
+              <input #productPrice />
+          </label>
+          <label>Seller:
+              <!-- <input [(ngModel)]="input.sellerName" name="sellerName" #sellerName="ngModel" required> -->
+              <input #sellerName />
+          </label>
+          <!-- (click) passes input value to add() and then clears the input -->
+          <button class="btn btn-hero-success main-btn" (click)="addProduct({name: productName.value, price: productPrice.value, sellerName: sellerName.value}); productName.value=''; productPrice.value=''; sellerName.value=''">
+            Add
+          </button>
+        </div>
+  </nb-card-header>
+  <nb-card-header *ngIf="flag">
+      <div>
+          <label>Name:
+              <input #name />
+          </label>
+          <label>Price:
+              <input #price />
+          </label>
+          <label>Seller:
+              <input #seller />
+          </label>
+          <button class="btn btn-hero-success main-btn" (click)="updateProduct({name: name.value, price: price.value, sellerName: seller.value}); name.value=''; price.value=''; seller.value=''">
+            Save
+          </button>
+        </div>
+  </nb-card-header>
+  <nb-card-body>
+  <table class="table table-hover table-bordered table-striped">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">Created At</th>
+      <th class="text-center">Updated At</th>
+      <th class="text-center">Seller</th>
+    </tr>
+    <tr *ngFor="let product of tableData">
+      <!-- The products that are not in edit mode -->
+      <td class="text-center">{{product.name}}</td>
+      <td class="text-center">{{product.price|currency}}</td>
+      <td class="text-center">{{product.createdAt|date}}</td>
+      <td class="text-center">{{product.updatedAt|date}}</td>
+      <td class="text-center">{{product.sellerName}}</td>
+      <td><button class="btn btn-hero-success main-btn" (click)="editProduct(product)">Edit</button></td>
+      <td><button class="btn btn-hero-success main-btn" (click)="deleteProduct(product)">Delete</button></td>
+    </tr>
+  </table>
+  </nb-card-body>
+  <nb-card-footer>Thank you for visiting the store!</nb-card-footer>
+  </nb-card>
+
+
